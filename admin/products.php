@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_name'])) {
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     $productId = $_POST['product_id'];
-    $quantity = (int)$_POST['quantity'];
+    $quantity = (int) $_POST['quantity'];
 
     if ($quantity > 0) {
         $stmt = $pdo->prepare("UPDATE products SET stock = stock + ? WHERE id = ?");
@@ -61,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_name'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,10 +74,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_name'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
     <link rel="icon" type="image/png" href="../assets/images/logo.png">
 </head>
+
 <body>
-<?php include '../includes/navbar.php'; ?>
+    <?php include '../includes/navbar.php'; ?>
     <div class="dashboard">
-       
+
 
         <div class="main-content">
 
@@ -137,7 +139,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_name'])) {
 
                         <!-- Add New Product Card -->
                         <div class="col-md-4">
-                            <div class="card" style="border: 2px dashed #ccc; background-color: #f9f9f9; cursor: pointer; width: 90%;" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                            <div class="card"
+                                style="border: 2px dashed #ccc; background-color: #f9f9f9; cursor: pointer; width: 90%;"
+                                data-bs-toggle="modal" data-bs-target="#addProductModal">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Add Product</h5>
                                     <p class="card-text">Click here to add a new product.</p>
@@ -151,7 +155,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_name'])) {
     </div>
 
     <!-- Add Product Modal -->
-    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form action="products.php" method="POST" enctype="multipart/form-data">
@@ -166,7 +171,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_name'])) {
                         </div>
                         <div class="mb-3">
                             <label for="productPrice" class="form-label">Price (₱)</label>
-                            <input type="number" id="productPrice" name="product_price" class="form-control" required step="0.01">
+                            <input type="number" id="productPrice" name="product_price" class="form-control" required
+                                step="0.01">
                         </div>
                         <div class="mb-3">
                             <label for="productCategory" class="form-label">Category</label>
@@ -181,7 +187,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_name'])) {
                         </div>
                         <div class="mb-3">
                             <label for="productImage" class="form-label">Product Image</label>
-                            <input type="file" id="productImage" name="product_image" class="form-control" accept="image/*" required>
+                            <input type="file" id="productImage" name="product_image" class="form-control"
+                                accept="image/*" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -193,4 +200,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_name'])) {
         </div>
     </div>
 </body>
+
 </html>

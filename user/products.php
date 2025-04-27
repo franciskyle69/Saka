@@ -3,99 +3,112 @@ include '../includes/db.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Products</title>
 
   <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="styles/styles.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
   <link rel="icon" type="image/png" href="../assets/images/logo.png">
+
+  <style>
+    .product-card {
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .btn-block {
+      font-weight: bold;
+    }
+
+    .sidebar-categories {
+      background-color: rgba(200, 200, 200, 0.3);
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .category-link {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .category-link:hover {
+      color: #007bff;
+      text-decoration: underline;
+    }
+  </style>
 </head>
+
 <body>
-<?php include '../includes/navbar.php'; ?>
-  <div class="dashboard">
-   
 
-    <div class="main-content">
-     
+  <?php include '../includes/navbar.php'; ?>
 
-      <div class="content">
-        <h1>Welcome to the Products</h1>
-        <p>Browse and add products to your cart.</p>
+  <div class="container mt-5">
+    <h2 class="text-center mb-4 font-weight-bold">Products</h2>
 
-        <div class="container mt-4">
-          <div class="row">
-            <?php
-            $stmt = $pdo->query("SELECT * FROM products ORDER BY id DESC");
-            while ($row = $stmt->fetch()) {
-              echo '
-              <div class="col-md-4 mb-4">
-                <div class="card" style="width: 90%;">
-                  <img class="card-img-top" src="' . htmlspecialchars($row["image"]) . '" alt="Product Image">
-                  <div class="card-body">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3 mb-4">
+        <div class="sidebar-categories">
+          <h5 class="font-weight-bold mb-3">Categories</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#" class="category-link">All</a></li>
+            <li class="mb-2"><a href="#" class="category-link">Jackets</a></li>
+            <li class="mb-2"><a href="#" class="category-link">Backpacks</a></li>
+            <li class="mb-2"><a href="#" class="category-link">Footwear</a></li>
+            <li class="mb-2"><a href="#" class="category-link">Accessories</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Product Listing -->
+      <div class="col-md-9">
+        <div class="row">
+          <?php
+          $stmt = $pdo->query("SELECT * FROM products ORDER BY id DESC");
+          while ($row = $stmt->fetch()) {
+            echo '
+            <div class="col-md-4 mb-4">
+              <div class="card h-100 shadow-sm border-0 product-card">
+                <img src="' . htmlspecialchars($row["image"]) . '" class="card-img-top" alt="Product Image">
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <div>
                     <h5 class="card-title">' . htmlspecialchars($row["name"]) . '</h5>
-                    <p class="card-text">Category: ' . htmlspecialchars($row["category"]) . '</p>
-                    <p class="price"><strong>₱' . number_format($row["price"], 2) . '</strong></p>
-                    <button class="btn btn-primary add-to-cart-btn"
-                      data-id="' . $row['id'] . '"
-                      data-name="' . htmlspecialchars($row["name"]) . '"
-                      data-price="' . $row['price'] . '"
-                      data-image="' . htmlspecialchars($row["image"]) . '"
-                      data-bs-toggle="modal"
-                      data-bs-target="#addToCartModal">
-                      Add to Cart
-                    </button>
+                    <p class="text-muted mb-1">₱' . number_format($row["price"], 2) . '</p>
+                    <div class="text-warning mb-2">★★★★☆</div>
                   </div>
+                  <form method="POST" action="cart.php" class="mt-auto">
+                    <input type="hidden" name="product_id" value="' . $row["id"] . '">
+                    <input type="hidden" name="product_name" value="' . htmlspecialchars($row["name"]) . '">
+                    <input type="hidden" name="product_price" value="' . $row["price"] . '">
+                    <input type="hidden" name="product_image" value="' . htmlspecialchars($row["image"]) . '">
+                    <input type="hidden" name="product_quantity" value="1">
+                    <button type="submit" class="btn btn-primary btn-block">Add to Cart</button>
+                  </form>
                 </div>
-              </div>';
-            }
-            ?>
-          </div>
+              </div>
+            </div>';
+          }
+          ?>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Add to Cart Modal -->
-  <div class="modal fade" id="addToCartModal" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <form method="POST" action="cart.php" class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addToCartModalLabel">Add to Cart</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <input type="hidden" name="product_id" id="modalProductId">
-          <input type="hidden" name="product_name" id="modalProductName">
-          <input type="hidden" name="product_price" id="modalProductPrice">
-          <input type="hidden" name="product_image" id="modalProductImage">
-
-          <div class="mb-3">
-            <label for="productQuantity" class="form-label">Quantity</label>
-            <input type="number" name="product_quantity" id="productQuantity" class="form-control" min="1" value="1" required>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Add to Cart</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Modal Script -->
-  <script>
-    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
-      button.addEventListener('click', () => {
-        document.getElementById('modalProductId').value = button.dataset.id;
-        document.getElementById('modalProductName').value = button.dataset.name;
-        document.getElementById('modalProductPrice').value = button.dataset.price;
-        document.getElementById('modalProductImage').value = button.dataset.image;
-      });
-    });
-  </script>
 </body>
+
 </html>

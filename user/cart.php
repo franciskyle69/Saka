@@ -55,6 +55,7 @@ $cart = $_SESSION['cart'];
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Your Cart</title>
@@ -66,11 +67,14 @@ $cart = $_SESSION['cart'];
             height: 60px;
             object-fit: cover;
         }
-        .table td, .table th {
+
+        .table td,
+        .table th {
             vertical-align: middle;
         }
     </style>
 </head>
+
 <body>
 
     <div class="container mt-5">
@@ -90,12 +94,13 @@ $cart = $_SESSION['cart'];
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $total = 0; foreach ($cart as $id => $item): ?>
-                        <?php 
-                            $subtotal = $item['price'] * $item['quantity']; 
-                            $total += $subtotal; 
-                            $imageName = !empty($item['image']) ? basename($item['image']) : 'placeholder.png';
-                            $imagePath = '../assets/images/' . $imageName;
+                    <?php $total = 0;
+                    foreach ($cart as $id => $item): ?>
+                        <?php
+                        $subtotal = $item['price'] * $item['quantity'];
+                        $total += $subtotal;
+                        $imageName = !empty($item['image']) ? basename($item['image']) : 'placeholder.png';
+                        $imagePath = '../assets/images/' . $imageName;
                         ?>
                         <tr>
                             <td>
@@ -110,8 +115,10 @@ $cart = $_SESSION['cart'];
                             <td><?= $item['quantity'] ?></td>
                             <td>₱<?= number_format($subtotal, 2) ?></td>
                             <td>
-                                <a href="cart.php?action=increase&id=<?= $id ?>" class="btn btn-success btn-sm"><i class="bi bi-plus"></i></a>
-                                <a href="cart.php?action=decrease&id=<?= $id ?>" class="btn btn-warning btn-sm"><i class="bi bi-dash"></i></a>
+                                <a href="cart.php?action=increase&id=<?= $id ?>" class="btn btn-success btn-sm"><i
+                                        class="bi bi-plus"></i></a>
+                                <a href="cart.php?action=decrease&id=<?= $id ?>" class="btn btn-warning btn-sm"><i
+                                        class="bi bi-dash"></i></a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -122,10 +129,16 @@ $cart = $_SESSION['cart'];
                 </tbody>
             </table>
             <a href="cart.php?clear=1" class="btn btn-danger me-2">🗑 Clear Cart</a>
+            <form action="checkout.php" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-primary">🧾 Proceed to Checkout</button>
+            </form>
+
         <?php endif; ?>
         <a href="products.php" class="btn btn-secondary mt-3">
-            <img src="../assets/images/products.png" alt="Back to Products" style="width: 24px; height: 24px;"> Back to Products
+            <img src="../assets/images/products.png" alt="Back to Products" style="width: 24px; height: 24px;"> Back to
+            Products
         </a>
     </div>
 </body>
+
 </html>

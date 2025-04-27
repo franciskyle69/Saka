@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    
+
     <!-- External Stylesheets -->
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="../user/styles/styles.css">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -15,67 +16,52 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../assets/images/logo.png">
+
 </head>
+
 <body>
-<?php include '../includes/navbar.php'; ?>   
+    <?php include '../includes/navbar.php'; ?>
 
-        <!-- Main Content Section -->
-     
-        <div class="container mt-4">
-            <!-- Dashboard Overview Content -->
-            <div class="content p-4">
-                <h1>Welcome to the Dashboard</h1>
-                <p>Overview</p>
+    <!-- Main Content Section -->
 
-                <!-- Cards Side by Side -->
-                <div class="row">
-                    <!-- Sales Card -->
-                    <div class="col-md-4">
-                        <div class="card text-center">
-                            <img src="/images/sales.png" class="card-img-top img-fluid p-3" alt="Sales">
-                            <div class="card-body">
-                                <h5 class="card-title">Sales</h5>
-                                <p class="card-text fw-bold">₱500,000,000</p>
-                                <p class="card-text"><small class="text-muted">Last updated 5 mins ago</small></p>
-                            </div>
+    <div class="container mt-4">
+        <!-- Dashboard Overview Content -->
+        <div class="content p-4">
+            <h1>Welcome to the Saka Buk IT</h1>
+            <p>Your partner in the mountain!</p>
+            <br>
+            <div class="row">
+                <div class="col-md-6 mb-1 ">
+                    <div class="card text-center">
+                        <h5>Kulago </h5>
+
+                        <div class="card-body d-flex justify-content-center">
+                            <video class="w-100" style="max-height: 400px; object-fit: cover;" autoplay muted loop>
+                                <source src="../assets/videos/promote.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
-                    </div>
-                    
-                    <!-- Total Users Card -->
-                    <div class="col-md-4">
-                        <div class="card text-center">
-                            <img src="/images/users.png" class="card-img-top img-fluid p-3" alt="Total Users">
-                            <div class="card-body">
-                                <h5 class="card-title">Total Users</h5>
-                                <p class="card-text fw-bold">2,000 Users</p>
-                                <p class="card-text"><small class="text-muted">Last updated 5 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Revenue Card -->
-                    <div class="col-md-4">
-                        <div class="card text-center">
-                            <img src="/images/revenue.png" class="card-img-top img-fluid p-3" alt="Revenue">
-                            <div class="card-body">
-                                <h5 class="card-title">Revenue</h5>
-                                <p class="card-text fw-bold">₱300,000,000</p>
-                                <p class="card-text"><small class="text-muted">Last updated 5 mins ago</small></p>
-                            </div>
-                        </div>
+                        <p>Mountain is the best when u are sad </p>
                     </div>
                 </div>
-                <!-- End of Cards -->
-                <form method="POST" action="../admin/simple_print.php" target="_blank" class="container mt-5">
-                    <button type="submit" class="btn btn-primary">
-                        Print Products
-                    </button>
-                </form>
-            </div>
-            </div>
-            
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+                <div class="col-md-6 mb-1 ">
+                    <div class="card text-center">
+                        <h5>Kulago </h5>
+
+                        <div class="card-body d-flex justify-content-center">
+                            <video class="w-100" style="max-height: 400px; object-fit: cover;" autoplay muted loop>
+                                <source src="../assets/videos/promote.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <p>Mountain is the best when u are sad </p>
+                    </div>
+                </div>
+
+
+
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
