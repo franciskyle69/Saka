@@ -1,0 +1,226 @@
+
+/* Logo styles */
+.logo{
+    width: 200px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+/* User profile image styles */
+.user{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Makes it circular */
+}
+
+/* Reset default margin, padding and set box-sizing to border-box */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General body styles */
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+}
+
+/* Dashboard container */
+.dashboard{
+    display: flex;
+    height: 100vh; /* Full viewport height */
+}
+
+/* Sidebar styles */
+.sidebar{
+    width: 15%;
+    background-color: darkgreen;
+}
+
+/* Sidebar logo styles */
+.sidebar .heads img{
+    width: 150px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 20%;
+}
+
+/* Sidebar title styles */
+.sidebar .heads{
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    color: white;
+}
+
+/* Sidebar menu list styles */
+.sidebar .menu{
+    list-style: none;
+}
+
+.sidebar .menu li{
+    margin-bottom: 20px;
+}
+
+/* Sidebar menu links */
+.sidebar .menu li a{
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 4px;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Sidebar menu icon spacing */
+.sidebar .menu li span{
+    margin-left: 8px;
+}
+
+/* Sidebar menu icon styles */
+.sidebar .menu li a img{
+    width: 30px;
+}
+
+/* Sidebar hover effects */
+.sidebar .menu li a:hover{
+    background-color: lightgreen;
+}
+.sidebar .menu li a.active{
+    background-color: lightgreen;
+}
+
+/* Main content container */
+.main-content{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+/* Topbar styles */
+.topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: darkgreen;
+    box-shadow: 0px 2px 4px black;
+    color: white;
+}
+
+/* Search bar in topbar */
+.topbar .search input{
+    padding: 10px;
+    border: 1px solid grey;
+    border-radius: 4px;
+}
+
+/* User profile section in topbar */
+.topbar .user-profile{
+    display: flex;
+    align-items: center;
+}
+
+/* User profile image adjustments */
+.topbar .user-profile img{
+    margin-left: 10px;
+    border-radius: 50%;
+}
+
+/* Content section styles */
+.content {
+    padding: 20px;
+    background-color: rgb(219, 255, 219);
+}
+
+/* Card image styles */
+.card-img-top {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-top-left-radius: 8px; 
+    border-top-right-radius: 8px;
+}
+
+/* Card hover effects */
+.card {
+    transition: all 0.3s ease-in-out;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Image hover effect within card */
+.card-img-top {
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.1);
+}
+
+/* Button hover effect within card */
+.card .btn-primary {
+    transition: background 0.3s ease-in-out;
+}
+
+.card:hover .btn-primary {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Price label styles */
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 10px;
+}
+
+/* Fixed sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    background: darkgreen;
+    color: white;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Fixed topbar styles */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 250px;
+    width: calc(100% - 250px);
+    background: darkgreen;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Main content adjustments to prevent overlap */
+.main-content {
+    margin-left: 250px;
+    margin-top: 60px;
+    padding: 20px;
+}
